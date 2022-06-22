@@ -36,6 +36,7 @@ def create_league(data: dict = Body(...)):
 def spectate_league(data: dict = Body(...)):
     return service.espectate_new_league(data)
 
+
 @app.post("/getLeague")
 def get_league(data: dict = Body(...)):
     return service.get_league(data)
@@ -59,3 +60,12 @@ def get_players(data: dict):
 @app.post("/createMatch")
 def create_new_match(data: dict = Body(...)):
     return service.create_new_match(data)
+
+
+@app.post("/getMatches")
+def get_matches(data: dict = Body(...)):
+    return service.get_matches(data)
+
+@app.post("/endMatch")
+def end_match(data: dict = Body(...)):
+    return service.end_match(data)
