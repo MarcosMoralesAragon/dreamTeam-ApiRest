@@ -107,6 +107,10 @@ def find_league(listOfIds: dict, whereToAdd: list):
 
 # PLAYERS REQUESTS #
 
+def get_all_players():
+    return db.get_database("players")
+
+
 def create_new_player(data: dict):
     player_id = asign_id(db.get_database("players"), "P-")
     medium: float = (int([*data.values()][1]) + int([*data.values()][2]) + int([*data.values()][3])) / 3
@@ -164,6 +168,7 @@ def find_player_list(listOfIds: list, whereToAdd: list):
 def add_player_to_league(player_id, leagueId):
     db.get_db_instance().child("leagues").child(leagueId).child("playersId").push(player_id)
 
+
 def add_stats_to_player(player_id, shooting, center, defense, goal, medium, match_id):
     db.get_db_instance().child("players").child(player_id).child("shooter").push(shooting)
     db.get_db_instance().child("players").child(player_id).child("defense").push(center)
@@ -171,6 +176,8 @@ def add_stats_to_player(player_id, shooting, center, defense, goal, medium, matc
     db.get_db_instance().child("players").child(player_id).child("goals").push(goal)
     db.get_db_instance().child("players").child(player_id).child("medium").push(medium)
     db.get_db_instance().child("players").child(player_id).child("matches").push(match_id)
+
+
 # MATCHES REQUESTS #
 
 
@@ -320,11 +327,11 @@ def end_match(data: dict):
             max_defense = defense
             mvp_defense = [*player_dict.values()][1] + " - " + str(defense)
         goals = int([*player_dict.values()][5])
-        if  i >= len(list)/2:
+        if i >= len(list) / 2:
             team2_goals = team2_goals + goals
         else:
             team1_goals = team1_goals + goals
-        medium = (shooting + center + defense)/3
+        medium = (shooting + center + defense) / 3
         if medium > mvp:
             mvp = medium
             player_mvp = [*player_dict.values()][1] + " - " + str(mvp)

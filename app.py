@@ -56,6 +56,9 @@ def create_new_player(data: dict = Body(...)):
 def get_players(data: dict):
     return service.get_players(data)
 
+@app.get("/getAllPlayers")
+def get_all_players():
+    return service.get_all_players()
 
 @app.post("/createMatch")
 def create_new_match(data: dict = Body(...)):
