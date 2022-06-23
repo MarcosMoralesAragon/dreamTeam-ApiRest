@@ -193,8 +193,10 @@ def create_new_match(data: dict):
         for i in range(len([*player_dict.values()])):
             if [*player_dict.keys()][i] == "medium":
                 player_medium_counter = 0
-                for medium in [*player_dict.values()][i]:
-                    player_medium_counter = + medium
+                mediums: dict = [*player_dict.values()][i]
+                for medium in [*mediums.values()]:
+                    print(test)
+                    player_medium_counter = player_medium_counter + medium
                 player_medium_counter = player_medium_counter / len([*player_dict.values()][i])
                 players_mediums.append(player_medium_counter)
 
@@ -252,8 +254,14 @@ def create_new_match(data: dict):
         player_dict: dict = player
         for i in range(len([*player_dict.values()])):
             if [*player_dict.keys()][i] == "medium":
-                if buscar_en_lista(first_team, [*player_dict.values()][i][0]):
-                    for i in range(len([*player_dict.values()])):
+                player_medium_counter = 0
+                mediums: dict = [*player_dict.values()][i]
+                for medium in [*mediums.values()]:
+                    print(test)
+                    player_medium_counter = player_medium_counter + medium
+                player_medium_counter = player_medium_counter / len([*player_dict.values()][i])
+                if buscar_en_lista(first_team, player_medium_counter):
+                  for i in range(len([*player_dict.values()])):
                         if [*player_dict.keys()][i] == "id":
                             full_players_fist_team.append([*player_dict.values()][i])
                 else:
